@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>YooFit – Iniciar sesión</title>
+  <meta name="description" content="Accede a tu cuenta YooFit y continúa con tu entrenamiento." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+
+<body>
+  <div class="phone-shell">
+    <div class="phone-frame">
+      <div class="screen">
+        <div class="bg-image"></div>
+
+        <div class="content">
+          <!-- Logo -->
+          <div class="logo-wrap">
+            <img src="assets/LOGO.png" alt="YooFit" class="logo-img" />
+          </div>
+
+          <!-- Heading -->
+          <div class="heading">
+            <h1><span class="white">Iniciar</span> <span class="gold">sesión</span></h1>
+            <p>Accede a tu cuenta y continúa con tu entreno.</p>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="email">Correo electrónico</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+              <input type="email" id="email" placeholder="Ingresa tu correo electrónico" autocomplete="email" />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="password">Contraseña</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <img src="assets/lock.png" style="width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.6;" alt="" />
+              </span>
+              <input type="password" id="password" placeholder="Ingresa tu contraseña"
+                autocomplete="current-password" />
+              <button class="toggle-pw" id="toggle-pw" type="button"
+                aria-label="Mostrar/ocultar contraseña">
+                <img id="toggle-pw-img" src="assets/vista.png" style="width:20px;height:20px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.6;" alt="" />
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember / Forgot -->
+          <div class="row-options">
+            <label class="remember-wrap">
+              <input type="checkbox" id="remember" />
+              <span>Recordarme</span>
+            </label>
+            <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <!-- Login button -->
+          <button class="btn btn-primary" id="btn-login" type="button" onclick="handleLogin()">
+            <span class="btn-text">Entrar</span>
+            <span class="btn-arrow">›</span>
+          </button>
+
+          <!-- Divider -->
+          <div class="divider"><span>o ingresa con</span></div>
+
+          <!-- Social -->
+          <div class="social-row">
+            <button class="social-btn" aria-label="Google">
+              <img src="assets/google-logo.png" alt="Google" />
+            </button>
+            <button class="social-btn" aria-label="Apple">
+              <img src="assets/apple-logo.png" alt="Apple" />
+            </button>
+            <button class="social-btn" aria-label="Facebook">
+              <img src="assets/facebook-logo.png" alt="Facebook" />
+            </button>
+          </div>
+
+          <!-- Sign up -->
+          <p class="signup-link">
+            ¿No tienes una cuenta?
+            <a href="register.html">Registrate</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/login.js"></script>
+
+  
+</body>
+
+</html>

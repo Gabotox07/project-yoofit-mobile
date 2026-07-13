@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>YooFit – Crear cuenta</title>
+  <meta name="description" content="Únete a YooFit y comienza tu transformación física." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/register.css" />
+</head>
+<body>
+  <div class="phone-shell">
+    <div class="phone-frame">
+      <div class="screen">
+        <div class="bg-image"></div>
+
+        <div class="content">
+          <!-- Logo -->
+          <div class="logo-wrap">
+            <img src="assets/LOGO.png" alt="YooFit" class="logo-img" />
+          </div>
+
+          <!-- Heading -->
+          <div class="heading">
+            <h1><span class="white">Crear</span> <span class="gold">cuenta</span></h1>
+            <p>Únete a YooFit y comienza tu transformación.</p>
+          </div>
+
+          <!-- Full name -->
+          <div class="form-group">
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+              <input type="text" id="fullname" placeholder="Nombre completo" autocomplete="name" />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+              <input type="email" id="email" placeholder="Correo electrónico" autocomplete="email" />
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <div class="input-wrap">
+              <span class="input-icon">
+                <img src="assets/phone.png" style="width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.6;" alt="" />
+              </span>
+              <input type="tel" id="phone" placeholder="Teléfono" autocomplete="tel" />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <div class="input-wrap">
+              <span class="input-icon">
+                <img src="assets/lock.png" style="width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.6;" alt="" />
+              </span>
+              <input type="password" id="password" placeholder="Contraseña" autocomplete="new-password" />
+              <button class="toggle-pw" id="toggle-pw" type="button" aria-label="Mostrar/ocultar contraseña">
+                <img id="toggle-pw-img" src="assets/vista.png" style="width:20px;height:20px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.6;" alt="" />
+              </button>
+            </div>
+          </div>
+
+          <!-- Terms -->
+          <label class="terms-check">
+            <input type="checkbox" id="terms" />
+            <span>
+              Acepto los <a href="#">Términos y Condiciones</a> y la
+              <a href="#">Política de Privacidad</a>.
+            </span>
+          </label>
+
+          <!-- Register button -->
+          <button class="btn btn-primary" id="btn-register" type="button" onclick="handleRegister()">
+            <span class="btn-text">Registrarme</span>
+            <span class="btn-arrow">›</span>
+          </button>
+
+          <!-- Divider -->
+          <div class="divider"><span>o regístrate con</span></div>
+
+          <!-- Social -->
+          <div class="social-row">
+            <button class="social-btn" aria-label="Google">
+              <img src="assets/google-logo.png" alt="Google" />
+            </button>
+            <button class="social-btn" aria-label="Apple">
+              <img src="assets/apple-logo.png" alt="Apple" />
+            </button>
+            <button class="social-btn" aria-label="Facebook">
+              <img src="assets/facebook-logo.png" alt="Facebook" />
+            </button>
+          </div>
+
+          <!-- Login link -->
+          <p class="login-link">
+            ¿Ya tienes una cuenta?
+            <a href="login.html">Inicia sesión</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/register.js"></script>
+</body>
+</html>

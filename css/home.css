@@ -1,0 +1,410 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F5C518;
+      --gold-dark: #D4A800;
+      --black: #0A0A0A;
+      --surface: #141414;
+      --card: #1C1C1C;
+      --card2: #242424;
+      --text: #FFFFFF;
+      --text-muted: #888;
+      --radius: 18px;
+      --nav-h: 72px;
+      --transition: 0.25s cubic-bezier(.4,0,.2,1);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--text);
+    }
+
+    .phone-shell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .phone-frame {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      height: 844px;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,.8), inset 0 0 0 2px #2a2a2a;
+      background: var(--surface);
+    }
+
+    .screen {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    /* ── SCROLL AREA ── */
+    .scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0 0 12px;
+    }
+
+    .scroll-area::-webkit-scrollbar { display: none; }
+    .scroll-area { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* ── HEADER ── */
+    .header {
+      padding: 52px 22px 16px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .header-left h1 {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .header-left h1 span { color: var(--gold); }
+
+    .header-left p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1.5px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .icon-btn:hover { background: var(--card2); transform: scale(1.06); }
+    .icon-btn:active { transform: scale(.94); }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .section-title h2 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .section-title a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .section-title a:hover { color: var(--gold); }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.05);
+    }
+
+    /* ── SECTION DISCIPLINE ── */
+    .section { padding: 0 18px 18px; }
+
+    /* Day circles */
+    .day-circles {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .day-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--transition);
+    }
+
+    .day-circle:active { transform: scale(.92); }
+
+    .day-circle.done {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .day-circle.done::before {
+      content: '✓';
+      font-weight: 900;
+    }
+
+    .day-circle.pending {
+      background: var(--card2);
+      color: var(--text-muted);
+      border: 1.5px solid rgba(255,255,255,.1);
+    }
+
+    /* Workout card */
+    .workout-card {
+      background: var(--card2);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,.05);
+    }
+
+    .workout-info p.day-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .workout-info h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .workout-meta {
+      display: flex;
+      gap: 14px;
+    }
+
+    .workout-meta span {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .workout-img {
+      width: 90px;
+      height: 80px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .workout-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Back day placeholder image */
+    .workout-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    /* ── ACTIVITY SECTION ── */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .activity-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .activity-item h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .activity-item p {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: -4px;
+    }
+
+    /* Donut chart */
+    .donut-wrap {
+      position: relative;
+      width: 76px;
+      height: 76px;
+    }
+
+    .donut-svg {
+      width: 76px;
+      height: 76px;
+      transform: rotate(-90deg);
+    }
+
+    .donut-track {
+      fill: none;
+      stroke: rgba(255,255,255,.08);
+      stroke-width: 7;
+    }
+
+    .donut-fill {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-dasharray: 188.5;  /* 2π × 30 */
+      stroke-dashoffset: 47.1;  /* 25% remaining → 188.5 × .25 */
+      transition: stroke-dashoffset .8s cubic-bezier(.4,0,.2,1);
+    }
+
+    .donut-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      height: var(--nav-h);
+      background: var(--card);
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 8px 14px;
+      border-radius: 12px;
+      transition: background var(--transition), transform var(--transition);
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      border: none;
+      background: none;
+    }
+
+    .nav-item:hover { background: rgba(255,255,255,.05); }
+    .nav-item:active { transform: scale(.9); }
+    .nav-item.active { color: var(--gold); }
+
+    .nav-item .nav-icon {
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+    }
+
+    .nav-item .nav-icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      filter: brightness(0) invert(0.65);
+      transition: filter var(--transition);
+    }
+
+    .nav-item .nav-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: rgba(255,255,255,0.65);
+      transition: stroke var(--transition);
+    }
+
+    .nav-item.active .nav-icon img {
+      filter: brightness(0) invert(82%) sepia(35%) saturate(2227%) hue-rotate(345deg) brightness(101%) contrast(94%);
+    }
+
+    .nav-item.active .nav-icon svg {
+      stroke: var(--gold);
+    }
+
+    /* Center + button */
+    .nav-plus {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 300;
+      color: #000;
+      cursor: pointer;
+      border: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 18px rgba(245,197,24,.4);
+    }
+
+    .nav-plus:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(245,197,24,.55); }
+    .nav-plus:active { transform: scale(.93); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .header           { animation: fadeUp .5s .05s both; }
+    .section:nth-child(1) { animation: fadeUp .5s .15s both; }
+    .section:nth-child(2) { animation: fadeUp .5s .25s both; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 480px) {
+      html, body { overflow: auto; height: auto; }
+      .phone-shell { display: block; padding: 0; }
+      .phone-frame { max-width: 100%; height: 100vh; border-radius: 0; box-shadow: none; }
+      .screen { height: 100vh; }
+    }
