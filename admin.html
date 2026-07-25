@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YooFit – Panel de Administrador</title>
+  <meta name="description" content="Panel de administración del gimnasio YooFit. Gestiona miembros, planes, asistencia y promociones." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <a href="index.html"><img src="assets/LOGO.png" alt="YooFit" class="logo-img" /></a>
+      <span class="admin-badge">Admin</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-link active" data-section="overview" onclick="switchSection('overview',this)">
+        <span class="nav-icon">📊</span><span>Overview</span>
+      </button>
+      <button class="nav-link" data-section="members" onclick="switchSection('members',this)">
+        <span class="nav-icon">👥</span><span>Miembros</span>
+      </button>
+      <button class="nav-link" data-section="attendance" onclick="switchSection('attendance',this)">
+        <span class="nav-icon">📅</span><span>Asistencia</span>
+      </button>
+      <button class="nav-link" data-section="plans" onclick="switchSection('plans',this)">
+        <span class="nav-icon">💳</span><span>Planes</span>
+      </button>
+      <button class="nav-link" data-section="promotions" onclick="switchSection('promotions',this)">
+        <span class="nav-icon">🎁</span><span>Promociones</span>
+      </button>
+      <button class="nav-link" data-section="capacity" onclick="switchSection('capacity',this)">
+        <span class="nav-icon">🚪</span><span>Cupos</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="adminLogout()">
+        <span>⬅</span> Cerrar sesión
+      </button>
+    </div>
+  </aside>
+
+  <!-- ═══════════════ TOPBAR (mobile) ═══════════════ -->
+  <header class="topbar">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="topbar-title">YooFit Admin</span>
+    <span class="admin-badge-top">Admin</span>
+  </header>
+
+  <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+  <main class="main-content" id="main-content">
+
+    <!-- ─── SECTION: OVERVIEW ─── -->
+    <section class="section active" id="section-overview">
+      <div class="page-header">
+        <div>
+          <h1>Dashboard</h1>
+          <p class="page-sub" id="greeting-text">Buenos días, Administrador</p>
+        </div>
+        <div class="header-date" id="header-date"></div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card" id="kpi-members">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-body">
+            <div class="kpi-label">Total Miembros</div>
+            <div class="kpi-value" id="kpi-val-members">0</div>
+            <div class="kpi-delta positive">↑ 4 este mes</div>
+          </div>
+        </div>
+        <div class="kpi-card" id="kpi-revenue">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-body">
+            <div class="kpi-label">Ingresos Mensuales</div>
+            <div class="kpi-value" id="kpi-val-revenue">S/ 0</div>
+            <div class="kpi-delta positive">↑ 12% vs mes ant.</div>
+          </div>
+        </div>
+        <div class="kpi-card" id="kpi-today">
+          <div class="kpi-icon">🏃</div>
+          <div class="kpi-body">
+            <div class="kpi-label">Asistencia Hoy</div>
+            <div class="kpi-value" id="kpi-val-today">0</div>
+            <div class="kpi-delta neutral" id="kpi-today-pct">– % de miembros</div>
+          </div>
+        </div>
+        <div class="kpi-card" id="kpi-capacity">
+          <div class="kpi-icon">🚪</div>
+          <div class="kpi-body">
+            <div class="kpi-label">Cupos Disponibles</div>
+            <div class="kpi-value" id="kpi-val-capacity">0</div>
+            <div class="kpi-delta" id="kpi-cap-sub">de 50 máximo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Charts Row -->
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <div class="chart-title">Asistencia – Últimos 7 días</div>
+          <canvas id="canvas-overview-attendance" height="160"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Distribución de Planes</div>
+          <canvas id="canvas-overview-plans" height="180"></canvas>
+          <div class="donut-legend" id="donut-legend"></div>
+        </div>
+      </div>
+
+      <!-- Recent Members -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Últimos miembros registrados</h3>
+          <button class="text-btn" onclick="switchSection('members', document.querySelector('[data-section=members]'))">Ver todos →</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="recent-members-table">
+            <thead>
+              <tr><th>Nombre</th><th>Plan</th><th>Inscripción</th><th>Estado</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION: MEMBERS ─── -->
+    <section class="section" id="section-members">
+      <div class="page-header">
+        <div><h1>Miembros</h1><p class="page-sub">Gestión completa de clientes</p></div>
+      </div>
+
+      <div class="filters-bar">
+        <input type="search" id="member-search" placeholder="🔍  Buscar por nombre o correo…" oninput="filterMembers()" />
+        <select id="plan-filter" onchange="filterMembers()">
+          <option value="">Todos los planes</option>
+          <option value="Básico">Básico</option>
+          <option value="Premium">Premium</option>
+          <option value="Elite">Elite</option>
+        </select>
+        <select id="status-filter" onchange="filterMembers()">
+          <option value="">Todos los estados</option>
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+      </div>
+
+      <div class="card table-card">
+        <div class="table-wrap">
+          <table class="data-table" id="members-table">
+            <thead>
+              <tr>
+                <th>Miembro</th>
+                <th>Correo</th>
+                <th>Plan</th>
+                <th>Asistencia</th>
+                <th>Inscripción</th>
+                <th>Estado</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="members-tbody"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION: ATTENDANCE ─── -->
+    <section class="section" id="section-attendance">
+      <div class="page-header">
+        <div><h1>Asistencia</h1><p class="page-sub">Análisis de concurrencia al gimnasio</p></div>
+      </div>
+
+      <div class="kpi-grid small">
+        <div class="kpi-card">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-body">
+            <div class="kpi-label">Promedio Semanal</div>
+            <div class="kpi-value" id="att-avg">0</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">🔥</div>
+          <div class="kpi-body">
+            <div class="kpi-label">Día más concurrido</div>
+            <div class="kpi-value" id="att-peak-day">–</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">💤</div>
+          <div class="kpi-body">
+            <div class="kpi-label">Día menos concurrido</div>
+            <div class="kpi-value" id="att-low-day">–</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">📊</div>
+          <div class="kpi-body">
+            <div class="kpi-label">Tasa de asistencia</div>
+            <div class="kpi-value" id="att-rate">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <div class="chart-title">Asistencia diaria – Últimas 2 semanas</div>
+          <canvas id="canvas-attendance" height="200"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Asistencia por plan</div>
+          <canvas id="canvas-att-plan" height="200"></canvas>
+        </div>
+      </div>
+
+      <!-- Top attenders -->
+      <div class="card">
+        <div class="card-header"><h3>🏆 Top 5 – Mayor asistencia</h3></div>
+        <div class="top-list" id="top-attenders"></div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION: PLANS ─── -->
+    <section class="section" id="section-plans">
+      <div class="page-header">
+        <div><h1>Planes</h1><p class="page-sub">Distribución y rendimiento por plan</p></div>
+      </div>
+
+      <div class="plans-grid">
+        <div class="plan-big-card basic">
+          <div class="plan-emoji">🥉</div>
+          <h3>Plan Básico</h3>
+          <div class="plan-price">S/ 59<span>/mes</span></div>
+          <div class="plan-count" id="plan-count-basic">0 miembros</div>
+          <div class="plan-income" id="plan-income-basic">S/ 0 ingresos</div>
+          <ul class="plan-features">
+            <li>✓ Acceso a equipos</li>
+            <li>✓ Vestuarios</li>
+            <li>✗ Clases grupales</li>
+            <li>✗ Entrenador personal</li>
+          </ul>
+        </div>
+        <div class="plan-big-card premium">
+          <div class="plan-badge">Popular</div>
+          <div class="plan-emoji">🥈</div>
+          <h3>Plan Premium</h3>
+          <div class="plan-price">S/ 99<span>/mes</span></div>
+          <div class="plan-count" id="plan-count-premium">0 miembros</div>
+          <div class="plan-income" id="plan-income-premium">S/ 0 ingresos</div>
+          <ul class="plan-features">
+            <li>✓ Todo lo del Básico</li>
+            <li>✓ Clases grupales</li>
+            <li>✓ Sauna y spa</li>
+            <li>✗ Entrenador personal</li>
+          </ul>
+        </div>
+        <div class="plan-big-card elite">
+          <div class="plan-emoji">🥇</div>
+          <h3>Plan Elite</h3>
+          <div class="plan-price">S/ 159<span>/mes</span></div>
+          <div class="plan-count" id="plan-count-elite">0 miembros</div>
+          <div class="plan-income" id="plan-income-elite">S/ 0 ingresos</div>
+          <ul class="plan-features">
+            <li>✓ Todo lo del Premium</li>
+            <li>✓ Entrenador personal</li>
+            <li>✓ Nutricionista</li>
+            <li>✓ Acceso 24/7</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chart-card" style="margin-top:24px;">
+        <div class="chart-title">Ingresos por plan (mensual)</div>
+        <canvas id="canvas-plan-revenue" height="180"></canvas>
+      </div>
+    </section>
+
+    <!-- ─── SECTION: PROMOTIONS ─── -->
+    <section class="section" id="section-promotions">
+      <div class="page-header">
+        <div><h1>Promociones</h1><p class="page-sub">Gestiona descuentos y códigos activos</p></div>
+        <button class="btn-primary" onclick="openPromoModal()">+ Nueva Promoción</button>
+      </div>
+
+      <div class="promos-grid" id="promos-grid"></div>
+    </section>
+
+    <!-- ─── SECTION: CAPACITY ─── -->
+    <section class="section" id="section-capacity">
+      <div class="page-header">
+        <div><h1>Cupos</h1><p class="page-sub">Control de capacidad del gimnasio</p></div>
+      </div>
+
+      <div class="capacity-hero">
+        <div class="cap-circle-wrap">
+          <canvas id="canvas-capacity" width="220" height="220"></canvas>
+          <div class="cap-center-text">
+            <span id="cap-free-big">0</span>
+            <small>cupos libres</small>
+          </div>
+        </div>
+        <div class="cap-stats">
+          <div class="cap-stat">
+            <span class="cap-label">Capacidad máxima</span>
+            <span class="cap-val" id="cap-max-val">50</span>
+          </div>
+          <div class="cap-stat">
+            <span class="cap-label">Miembros activos</span>
+            <span class="cap-val" id="cap-occupied-val">0</span>
+          </div>
+          <div class="cap-stat">
+            <span class="cap-label">Cupos disponibles</span>
+            <span class="cap-val gold" id="cap-free-val">0</span>
+          </div>
+          <div class="cap-stat">
+            <span class="cap-label">Ocupación</span>
+            <span class="cap-val" id="cap-pct-val">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:28px;">
+        <div class="card-header"><h3>Ajustar capacidad máxima</h3></div>
+        <div class="cap-adjust">
+          <label class="form-label">Capacidad máxima</label>
+          <input type="number" id="cap-input" min="1" max="500" value="50" class="cap-input-field" />
+          <button class="btn-primary" onclick="updateCapacity()">Actualizar</button>
+        </div>
+        <div class="capacity-bar-wrap" style="margin-top:20px;">
+          <div class="cap-bar-label">
+            <span>Ocupación del gimnasio</span>
+            <span id="cap-bar-pct-label">0%</span>
+          </div>
+          <div class="capacity-bar">
+            <div class="capacity-fill" id="cap-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════ MEMBER DETAIL MODAL ═══════════════ -->
+  <div class="modal-overlay" id="member-modal" onclick="closeModal('member-modal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal('member-modal')">✕</button>
+      <div class="modal-body" id="member-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PROMO MODAL ═══════════════ -->
+  <div class="modal-overlay" id="promo-modal" onclick="closeModal('promo-modal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal('promo-modal')">✕</button>
+      <div class="modal-body">
+        <h2 style="margin-bottom:20px;">Nueva Promoción</h2>
+        <div class="form-group">
+          <label class="form-label">Código</label>
+          <input type="text" id="promo-code" class="form-input" placeholder="Ej: VERANO25" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Descripción</label>
+          <input type="text" id="promo-desc" class="form-input" placeholder="Ej: 25% de descuento en plan Premium" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Descuento (%)</label>
+          <input type="number" id="promo-discount" class="form-input" placeholder="25" min="1" max="100" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Válido hasta</label>
+          <input type="date" id="promo-date" class="form-input" />
+        </div>
+        <button class="btn-primary" style="width:100%;margin-top:16px;" onclick="savePromo()">Guardar Promoción</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

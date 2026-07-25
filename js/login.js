@@ -10,13 +10,24 @@
 
     // Login handler (demo)
     function handleLogin() {
-      const email = document.getElementById('email').value.trim();
+      const email    = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
 
-      if (!email || !password) {
-        shakeBtn();
+      if (!email || !password) { shakeBtn(); return; }
+
+      // ── ADMIN SHORTCUT ──────────────────────────────────────
+      if (email.toLowerCase().includes('admin') && password === 'admin') {
+        localStorage.setItem('currentUser', JSON.stringify({
+          name: 'Administrador', email: email, role: 'admin'
+        }));
+        const btn = document.getElementById('btn-login');
+        const btnText = btn.querySelector('.btn-text');
+        if (btnText) btnText.textContent = 'Acceso admin…';
+        else btn.textContent = 'Acceso admin…';
+        setTimeout(() => { window.location.href = 'admin.html'; }, 700);
         return;
       }
+      // ────────────────────────────────────────────────────────
 
       // Check registration details in localStorage
       const registeredUserRaw = localStorage.getItem('registeredUser');
@@ -48,11 +59,8 @@
 
       const btn = document.getElementById('btn-login');
       const btnText = btn.querySelector('.btn-text');
-      if (btnText) {
-        btnText.textContent = 'Cargando…';
-      } else {
-        btn.textContent = 'Cargando…';
-      }
+      if (btnText) btnText.textContent = 'Cargando…';
+      else btn.textContent = 'Cargando…';
       setTimeout(() => { window.location.href = 'home.html'; }, 800);
     }
 
