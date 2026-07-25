@@ -2,61 +2,266 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>YooFit – Bienvenido</title>
-  <meta name="description" content="YooFit – Tu app de fitness. Únete y supera tus límites." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YooFit – Entrena hoy, supera tu mejor versión</title>
+  <meta name="description" content="YooFit es tu centro de entrenamiento definitivo. Descubre nuestros planes, beneficios y únete hoy." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
-  <div class="phone-shell">
-    <div class="phone-frame">
-      <div class="screen">
 
-        <!-- Brand -->
-        <div class="brand">
-          <p class="brand-welcome">Bienvenido a</p>
-          <img src="assets/LOGO.png" alt="YooFit logo" class="brand-logo" />
-        </div>
+  <!-- Cabecera / Navegación -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#" class="logo-link">
+        <img src="assets/LOGO.png" alt="YooFit Logo" class="nav-logo" />
+      </a>
+      
+      <!-- Hamburger Menu for Mobile -->
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-        <!-- CTA buttons -->
-        <div class="cta-group">
-          <a href="login.html" class="btn btn-primary" id="btn-login">
-            <span class="btn-text">Iniciar sesión</span>
-            <span class="btn-arrow">›</span>
-          </a>
-          <a href="register.html" class="btn btn-outline" id="btn-register">
-            <span class="btn-text">Crear cuenta</span>
-            <span class="btn-arrow">›</span>
-          </a>
-        </div>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link">¿QUIÉNES SOMOS?</a>
+        <a href="#benefits" class="nav-link">BENEFICIOS</a>
+        <a href="#plans" class="nav-link">VER PLANES</a>
+        <a href="welcome.html" class="btn-login-nav">INICIAR SESIÓN</a>
+      </nav>
+    </div>
+  </header>
 
-        <!-- Divider -->
-        <div class="divider"><span>o continúa con</span></div>
+  <!-- Sección Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="assets/LOGO.png" alt="YooFit Logo" class="hero-logo" />
+      <h1 class="hero-title">ENTRENA HOY. <span class="gold">SUPERA TU MEJOR VERSIÓN.</span></h1>
+      <p class="hero-subtitle">
+        Transforma tu cuerpo, fortalece tu mente y alcanza tus objetivos con planes adaptados a tu ritmo.
+      </p>
+      <ul class="hero-list">
+        <li><span>✓</span> Equipos modernos</li>
+        <li><span>✓</span> Entrenadores capacitados</li>
+        <li><span>✓</span> Planes flexibles</li>
+      </ul>
+      <div class="hero-actions">
+        <a href="#plans" class="btn btn-primary">Ver Planes</a>
+        <a href="welcome.html" class="btn btn-outline">Empezar Ahora</a>
+      </div>
+    </div>
+  </section>
 
-        <!-- Social login -->
-        <div class="social-row">
-          <button class="social-btn" id="btn-google" aria-label="Continuar con Google">
-            <img src="assets/google-logo.png" alt="Google" />
-          </button>
-          <button class="social-btn" id="btn-apple" aria-label="Continuar con Apple">
-            <img src="assets/apple-logo.png" alt="Apple" />
-          </button>
-          <button class="social-btn" id="btn-facebook" aria-label="Continuar con Facebook">
-            <img src="assets/facebook-logo.png" alt="Facebook" />
-          </button>
-        </div>
-
-        <!-- Terms -->
-        <p class="terms">
-          Al continuar, aceptas nuestros<br />
-          <a href="#">Términos y Condiciones y Política de Privacidad</a>
+  <!-- Sección ¿Quiénes somos? -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title-label">¿Quiénes somos?</h2>
+        <span class="gold-line"></span>
+      </div>
+      <div class="about-content">
+        <p class="about-lead">
+          En <strong>YooFit</strong>, creemos que el fitness no es solo una rutina, sino un estilo de vida que transforma vidas.
         </p>
+        <p class="about-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p class="about-text">
+          Nuestras instalaciones están diseñadas para inspirarte desde el primer momento en que cruzas la puerta. Con el equipamiento de última generación y una comunidad apasionada, te brindamos las herramientas necesarias para romper límites y redefinir lo que eres capaz de lograr.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Beneficios -->
+  <section id="benefits" class="benefits-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title-label">Beneficios de unirte</h2>
+        <span class="gold-line"></span>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefits-info">
+          <h3>¿Por qué elegir YooFit?</h3>
+          <p>
+            Te ofrecemos un entorno premium con todo lo necesario para optimizar tu salud, fuerza y rendimiento físico.
+          </p>
+          <ul class="benefits-list">
+            <li>
+              <div class="benefit-icon">💪</div>
+              <div class="benefit-text">
+                <h4>Acceso Ilimitado 24/7</h4>
+                <p>Entrena a la hora que quieras sin restricciones de horario.</p>
+              </div>
+            </li>
+            <li>
+              <div class="benefit-icon">🧘</div>
+              <div class="benefit-text">
+                <h4>Clases Grupales Premium</h4>
+                <p>Spinning, Yoga, Funcional y Cardio-Box dictados por profesionales.</p>
+              </div>
+            </li>
+            <li>
+              <div class="benefit-icon">🏋️</div>
+              <div class="benefit-text">
+                <h4>Zona de Musculación y Cardio</h4>
+                <p>Equipos de última generación para potenciar tu entrenamiento de fuerza.</p>
+              </div>
+            </li>
+            <li>
+              <div class="benefit-icon">🍎</div>
+              <div class="benefit-text">
+                <h4>Asesoría Nutricional Personalizada</h4>
+                <p>Planes de alimentación adaptados a tus objetivos de volumen o definición.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="benefits-image-wrap">
+          <img src="assets/bene.jpg" alt="Beneficios de entrenar en YooFit" class="benefits-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Planes -->
+  <section id="plans" class="plans-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title-label">Nuestros Planes</h2>
+        <span class="gold-line"></span>
+        <p class="section-subtitle-label">Elige la membresía que mejor se adapte a tu estilo y objetivos</p>
+      </div>
+      <div class="plans-grid">
+        
+        <!-- Plan Básico -->
+        <div class="plan-card">
+          <div class="plan-header">
+            <h3>Plan Básico</h3>
+            <div class="plan-price">
+              <span class="currency">S/</span>
+              <span class="amount">59.90</span>
+              <span class="period">/ mes</span>
+            </div>
+          </div>
+          <div class="plan-body">
+            <ul class="plan-features">
+              <li><span>✓</span> Acceso a zona de musculación</li>
+              <li><span>✓</span> Equipamiento de cardio moderno</li>
+              <li><span>✓</span> Uso de duchas y vestidores</li>
+              <li class="disabled"><span>✗</span> Clases grupales premium</li>
+              <li class="disabled"><span>✗</span> Asesoría nutricional quincenal</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <a href="welcome.html" class="btn btn-outline-gold">Empezar Plan</a>
+          </div>
+        </div>
+
+        <!-- Plan Premium -->
+        <div class="plan-card popular">
+          <div class="popular-badge">Recomendado</div>
+          <div class="plan-header">
+            <h3>Plan Premium</h3>
+            <div class="plan-price">
+              <span class="currency">S/</span>
+              <span class="amount">99.90</span>
+              <span class="period">/ mes</span>
+            </div>
+          </div>
+          <div class="plan-body">
+            <ul class="plan-features">
+              <li><span>✓</span> Acceso total a musculación y cardio</li>
+              <li><span>✓</span> Clases grupales ilimitadas</li>
+              <li><span>✓</span> Uso de duchas y vestidores</li>
+              <li><span>✓</span> Evaluación física mensual</li>
+              <li class="disabled"><span>✗</span> Asesoría nutricional quincenal</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <a href="welcome.html" class="btn btn-primary">Empezar Plan</a>
+          </div>
+        </div>
+
+        <!-- Plan VIP -->
+        <div class="plan-card">
+          <div class="plan-header">
+            <h3>Plan VIP</h3>
+            <div class="plan-price">
+              <span class="currency">S/</span>
+              <span class="amount">159.90</span>
+              <span class="period">/ mes</span>
+            </div>
+          </div>
+          <div class="plan-body">
+            <ul class="plan-features">
+              <li><span>✓</span> Acceso total a musculación y cardio</li>
+              <li><span>✓</span> Clases grupales ilimitadas</li>
+              <li><span>✓</span> Asesoría nutricional quincenal</li>
+              <li><span>✓</span> 4 Sesiones con entrenador personal</li>
+              <li><span>✓</span> Acceso a sauna y spa semanal</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <a href="welcome.html" class="btn btn-outline-gold">Empezar Plan</a>
+          </div>
+        </div>
 
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 YooFit. Todos los derechos reservados. Supera tus límites.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const headerOffset = 80;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
